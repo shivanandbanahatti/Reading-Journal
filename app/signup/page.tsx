@@ -6,35 +6,30 @@ import { useRouter } from "next/navigation";
 import { BookOpen, Loader2 } from "lucide-react";
 import Link from "next/link";
 
-export default function SignupPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const supabase = createClient();
   const router = useRouter();
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    const { error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
-      options: {
-        data: {
-          full_name: fullName,
-        },
-      },
     });
 
     if (error) {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push("/login?message=Check your email to confirm your account");
+      router.push("/");
+      router.refresh();
     }
   };
 
@@ -45,22 +40,11 @@ export default function SignupPage() {
           <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4">
             <BookOpen className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Create account</h1>
-          <p className="text-gray-500 text-sm mt-1">Start your reading journey today</p>
+          <h1 className="text-2xl font-bold text-gray-900">Granth</h1>
+          <p className="text-gray-500 text-sm mt-1">Sign in to your reading journal</p>
         </div>
 
-        <form onSubmit={handleSignup} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-            <input
-              type="text"
-              required
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
-              placeholder="John Doe"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </div>
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
@@ -90,14 +74,14 @@ export default function SignupPage() {
             disabled={loading}
             className="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Create Account"}
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Sign In"}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          Already have an account?{" "}
-          <Link href="/login" className="text-indigo-600 font-bold hover:underline">
-            Sign in
+          Don't have an account?{" "}
+          <Link href="/signup" className="text-indigo-600 font-bold hover:underline">
+            Sign up
           </Link>
         </p>
       </div>

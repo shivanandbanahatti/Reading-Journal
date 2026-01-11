@@ -109,7 +109,7 @@ export default function ReadingList() {
           <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
             <BookOpen className="text-white w-5 h-5" />
           </div>
-          <h1 className="font-bold text-xl tracking-tight">Lumina</h1>
+          <h1 className="font-bold text-xl tracking-tight">Granth</h1>
         </div>
 
         <nav className="space-y-1 flex-1">
@@ -145,6 +145,7 @@ export default function ReadingList() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
               <BookOpen className="text-white w-5 h-5" />
             </div>
+            <h1 className="font-bold text-lg tracking-tight">Granth</h1>
           </div>
           <div className="relative flex-1 max-w-96 mx-4 md:mx-0">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />

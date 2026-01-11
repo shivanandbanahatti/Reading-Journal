@@ -1,6 +1,6 @@
 {
-  "name": "Lumina Reading Journal",
-  "short_name": "Lumina",
+  "name": "Granth Reading Journal",
+  "short_name": "Granth",
   "description": "A reading list with notes, highlights, and quotes",
   "start_url": "/",
   "display": "standalone",

@@ -1,6 +1,6 @@
-# Lumina — Personal Reading Journal 📚
+# Granth — Personal Reading Journal 📚
 
-Lumina is a modern, beautiful, and open-source reading journal designed for bibliophiles who want to track their reading progress and preserve their favorite insights. Capture highlights, save profound quotes, and write personal notes for every book in your library.
+Granth is a modern, beautiful, and open-source reading journal designed for bibliophiles who want to track their reading progress and preserve their favorite insights. Capture highlights, save profound quotes, and write personal notes for every book in your library.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
@@ -15,7 +15,7 @@ Lumina is a modern, beautiful, and open-source reading journal designed for bibl
     -   **Quotes**: Keep track of memorable lines.
     -   **Notes**: Write down your personal reflections.
 -   **📊 Progress Tracking**: Visual progress bars to see how far you are in each book.
--   **📱 PWA Ready**: Install Lumina on your mobile device directly from the browser for a native app experience.
+-   **📱 PWA Ready**: Install Granth on your mobile device directly from the browser for a native app experience.
 -   **🔍 Quick Search**: Instantly find any book or author in your collection.
 -   **🔐 Secure Auth**: Private accounts powered by Supabase Authentication.
 
@@ -39,8 +39,8 @@ Lumina is a modern, beautiful, and open-source reading journal designed for bibl
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/lumina.git
-    cd lumina
+    git clone https://github.com/your-username/granth.git
+    cd granth
     ```
 
 2.  **Install dependencies:**
@@ -66,7 +66,7 @@ Lumina is a modern, beautiful, and open-source reading journal designed for bibl
 
 ## 📱 Mobile Installation (PWA)
 
-Lumina is built as a Progressive Web App. To "install" it on your phone:
+Granth is built as a Progressive Web App. To "install" it on your phone:
 1.  Deploy the app to a service like Vercel.
 2.  Open the URL in your mobile browser (Chrome for Android, Safari for iOS).
 3.  Tap **"Add to Home Screen"**.

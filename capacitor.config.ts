@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.lumina.readingjournal',
-  appName: 'Lumina',
+  appId: 'com.granth.readingjournal',
+  appName: 'Granth',
   webDir: 'out',
   server: {
     androidScheme: 'https'

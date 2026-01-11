@@ -40,7 +40,7 @@ export default function LoginPage() {
           <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4">
             <BookOpen className="text-white w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Granth</h1>
           <p className="text-gray-500 text-sm mt-1">Sign in to your reading journal</p>
         </div>
 

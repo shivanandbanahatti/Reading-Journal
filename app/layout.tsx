@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Lumina - Reading Journal",
+  title: "Granth - Reading Journal",
   description: "Your personal reading list with notes and highlights",
   manifest: "/manifest.json",
 };
