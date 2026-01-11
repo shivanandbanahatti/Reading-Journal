@@ -38,10 +38,10 @@ export default function ReadingList() {
   const [user, setUser] = useState<any>(null);
   const [filter, setFilter] = useState<string>("all");
 
-  const supabase = createClient();
   const router = useRouter();
 
   const fetchBooks = useCallback(async () => {
+    const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       router.push("/login");
@@ -77,13 +77,14 @@ export default function ReadingList() {
       setBooks(booksWithCounts);
     }
     setLoading(false);
-  }, [supabase, filter, router]);
+  }, [filter, router]);
 
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
 
   const handleLogout = async () => {
+    const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/login");
   };
@@ -341,12 +342,12 @@ function AddBookModal({ onClose, onSuccess }: { onClose: () => void, onSuccess: 
     cover_url: "",
     status: "reading" as const
   });
-  const supabase = createClient();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
+    const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
@@ -457,9 +458,9 @@ function BookDetail({ book, onClose, onUpdate }: { book: Book, onClose: () => vo
   const [newAnnotation, setNewAnnotation] = useState("");
   const [isAdding, setIsAdding] = useState(false);
   const [progress, setProgress] = useState(book.progress || 0);
-  const supabase = createClient();
 
   const fetchAnnotations = useCallback(async () => {
+    const supabase = createClient();
     const { data, error } = await supabase
       .from("annotations")
       .select("*")
@@ -468,7 +469,7 @@ function BookDetail({ book, onClose, onUpdate }: { book: Book, onClose: () => vo
 
     if (!error) setAnnotations(data);
     setLoading(false);
-  }, [supabase, book.id]);
+  }, [book.id]);
 
   useEffect(() => {
     fetchAnnotations();
@@ -478,6 +479,7 @@ function BookDetail({ book, onClose, onUpdate }: { book: Book, onClose: () => vo
     if (!newAnnotation.trim()) return;
     setIsAdding(true);
     
+    const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
@@ -497,6 +499,7 @@ function BookDetail({ book, onClose, onUpdate }: { book: Book, onClose: () => vo
   };
 
   const handleUpdateProgress = async () => {
+    const supabase = createClient();
     const { error } = await supabase
       .from("books")
       .update({ progress })
@@ -507,6 +510,7 @@ function BookDetail({ book, onClose, onUpdate }: { book: Book, onClose: () => vo
 
   const handleDeleteBook = async () => {
     if (confirm("Are you sure you want to delete this book?")) {
+      const supabase = createClient();
       const { error } = await supabase.from("books").delete().eq("id", book.id);
       if (!error) {
         onUpdate();
