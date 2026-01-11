@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* No global colors; components decide their own colors */
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
