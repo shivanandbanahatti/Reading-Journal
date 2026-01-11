@@ -102,8 +102,8 @@ export default function ReadingList() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#F8F9FA]">
-      {/* Sidebar */}
+    <div className="flex min-h-screen bg-[#F8F9FA] pb-20 md:pb-0">
+      {/* Sidebar (Desktop) */}
       <aside className="w-64 border-r border-gray-200 bg-white p-6 hidden md:flex flex-col sticky top-0 h-screen">
         <div className="flex items-center gap-2 mb-10">
           <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
@@ -140,12 +140,17 @@ export default function ReadingList() {
 
       {/* Main Content */}
       <main className="flex-1">
-        <header className="h-16 border-b border-gray-200 bg-white/50 backdrop-blur-sm sticky top-0 z-10 px-8 flex items-center justify-between">
-          <div className="relative w-96">
+        <header className="h-16 border-b border-gray-200 bg-white/50 backdrop-blur-sm sticky top-0 z-10 px-4 md:px-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 md:hidden">
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <BookOpen className="text-white w-5 h-5" />
+            </div>
+          </div>
+          <div className="relative flex-1 max-w-96 mx-4 md:mx-0">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input 
               type="text" 
-              placeholder="Search your library..." 
+              placeholder="Search..." 
               className="w-full pl-10 pr-4 py-2 bg-gray-100 border-transparent focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 rounded-xl text-sm transition-all outline-none"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -153,14 +158,14 @@ export default function ReadingList() {
           </div>
           <button 
             onClick={() => setIsAddModalOpen(true)}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2 transition-all shadow-sm shadow-indigo-200"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white p-2 md:px-4 md:py-2 rounded-xl text-sm font-medium flex items-center gap-2 transition-all shadow-sm shadow-indigo-200"
           >
-            <Plus className="w-4 h-4" />
-            Add Book
+            <Plus className="w-5 h-5 md:w-4 md:h-4" />
+            <span className="hidden md:inline">Add Book</span>
           </button>
         </header>
 
-        <div className="p-8 max-w-7xl mx-auto">
+        <div className="p-4 md:p-8 max-w-7xl mx-auto">
           <div className="flex items-end justify-between mb-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900">
@@ -198,6 +203,14 @@ export default function ReadingList() {
         </div>
       </main>
 
+      {/* Bottom Navigation (Mobile) */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center md:hidden z-40">
+        <MobileNavItem icon={<Library className="w-6 h-6" />} active={filter === "all"} onClick={() => setFilter("all")} />
+        <MobileNavItem icon={<Clock className="w-6 h-6" />} active={filter === "reading"} onClick={() => setFilter("reading")} />
+        <MobileNavItem icon={<Bookmark className="w-6 h-6" />} active={filter === "finished"} onClick={() => setFilter("finished")} />
+        <MobileNavItem icon={<Quote className="w-6 h-6" />} active={filter === "want_to_read"} onClick={() => setFilter("want_to_read")} />
+      </nav>
+
       {/* Modals */}
       <AnimatePresence>
         {selectedBook && (
@@ -218,6 +231,20 @@ export default function ReadingList() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function MobileNavItem({ icon, active, onClick }: { icon: React.ReactNode, active: boolean, onClick: () => void }) {
+  return (
+    <button 
+      onClick={onClick}
+      className={cn(
+        "p-2 rounded-xl transition-all",
+        active ? "text-indigo-600 bg-indigo-50" : "text-gray-400"
+      )}
+    >
+      {icon}
+    </button>
   );
 }
 
